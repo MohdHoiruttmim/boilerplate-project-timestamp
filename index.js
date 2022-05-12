@@ -19,8 +19,8 @@ app.get("/", function (req, res) {
 });
 
 // your first API endpoint...
-app.get("/api/hello", function (req, res) {
-  res.json({ greeting: req.params.hello });
+app.get("/api/", function (req, res) {
+  res.json({ unix: new Date().getTime(), utc: new Date().toUTCString() });
 });
 
 app.get("/api/:stamp", (req, res) => {
@@ -41,24 +41,16 @@ app.get("/api/:stamp", (req, res) => {
       res.json({
         unix: parseInt(stamp),
         utc: new Date(parseInt(stamp)).toUTCString(),
-    });
+      });
     }
   }
-  // try {
-  //   if (isNaN(req.params.stamp)) {
-  //     stamp = parseInt(req.params.stamp);
-  //     res.json({ unix: stamp, utc: new Date(stamp).toUTCString() });
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
 });
 
 // listen for requests :)
-// var listener = app.listen(process.env.PORT, function () {
-//   console.log('Your app is listening on port ' + listener.address().port);
-// });
-
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Your app is listening on port 3000");
+var listener = app.listen(process.env.PORT, function () {
+  console.log("Your app is listening on port " + listener.address().port);
 });
+
+// app.listen(process.env.PORT || 3000, function () {
+//   console.log("Your app is listening on port 3000");
+// });
